@@ -3,6 +3,7 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+
 .botao{
     width: 300px;
     border-radius: 4px;
@@ -13,10 +14,11 @@
 }
 #logo{
     background-color: #fff;
-    padding: 10px;
+    padding: 11px;
     border-radius: 8px;
     position: relative;
-    top:-9px;
+    height: 57px;
+    top:-12px;
 }
 
 
@@ -77,7 +79,7 @@ h6 {
 }
 
 .bg-light-gray {
-    background-color: #f7f7f7;
+    background-color: #f3f3f6;
 }
 
 .bg-darkest-gray {
@@ -125,7 +127,7 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
     border-color: #0054a6;
-    background-color: #0054a6;
+    background-color: #fff;
 }
 
 .btn-primary .badge {
@@ -134,15 +136,16 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-xl {
-    padding: 20px 40px;
-    border-color: #0054a6;
-    border-radius: 3px;
+    padding: 5px 30px;
+    border-color: #fff;
+    border-radius: 5px;
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: #fff;
-    background-color: #0054a6;
+    background-color: #0014A6;
+    height: 60px;
 }
 
 .btn-xl:hover,
@@ -150,9 +153,9 @@ fieldset[disabled] .btn-primary.active {
 .btn-xl:active,
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
-    border-color: #f6bf01;
-    color: #fff;
-    background-color: #0054a6;
+    border-color: #81e6ff;
+    color: #e8faff;
+    background-color: #454db4;
 }
 
 .btn-xl:active,
@@ -187,7 +190,7 @@ fieldset[disabled] .btn-xl.active {
 
 .navbar-default {
     border-color: transparent;
-    background-color: #222;
+    background-color: #316BD7;
 }
 
 .navbar-default .navbar-brand {
@@ -217,7 +220,7 @@ fieldset[disabled] .btn-xl.active {
 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-    background-color: #0054a6;
+   
 }
 
 .navbar-default .nav li a {
@@ -231,7 +234,7 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus {
     outline: 0;
-    color: #0054a6;
+    color: #99fff9  ;
 }
 
 .navbar-default .navbar-nav>.active>a {
@@ -254,6 +257,7 @@ fieldset[disabled] .btn-xl.active {
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
+        
     }
 
     .navbar-default .navbar-brand {
@@ -317,6 +321,7 @@ header .intro-text .intro-heading {
     header .intro-text {
         padding-top: 300px;
         padding-bottom: 200px;
+        
     }
 
     header .intro-text .intro-lead-in {
@@ -704,6 +709,7 @@ section#contact .form-group textarea.form-control {
 
 section#contact .form-control:focus {
     border-color: #0054a6;
+    background-color: #fff;
     box-shadow: none;
 }
 
