@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Serviços</h2>
-                    <h3 class="section-subheading text-muted">Isenções de impostos como IPI, IOF, ICMS, IPVA para pessoas com deficiência física ou psiquiatria, na aquisição de automóveis novo.</h3>
+                    <h3 class="section-subheading text-muted">Isenções de impostos como IPI, IOF, ICMS e IPVA para pessoas com deficiência física ou psiquiátrica na aquisição de automóveis novos.</h3>
                 </div>
             </div>
             
@@ -45,16 +45,16 @@
                     );
                 
                 echo monta_servico_site(
-                        $titulo = "ICMS (Imposto sobre Circulação de mercadorias e serviços)  ",
-                        $descricao = "São isentas do ICMS, automóveis movidos a qualquer combustível, que se destinar ao uso exclusivo do adquirente (Condutor com deficiência) impossibilitado de usar automóveis comum."
+                        $titulo = "ICMS (Imposto sobre Circulação de Mercadorias e Serviços)  ",
+                        $descricao = "São isentos do ICMS automóveis movidos a qualquer combustível, destinados ao uso exclusivo do adquirente (condutor com deficiência), impossibilitado de utilizar automóveis comuns."
                     );
                 echo monta_servico_site(
                         $titulo = "   IPVA (Imposto sobre a Propriedade de Veículos Automotores)",
-                        $descricao = "A isenção de IPVA para automóvel de passageiros (Fabricação nacional) de propriedade do protador de deficiência física.<br>A isenção do IPVA vale durante todo o período em que o automóvel estiver em nome do mesmo condutor."
+                        $descricao = "A isenção de IPVA para automóvel de passageiros (fabricação nacional), de propriedade do portador de deficiência física.<br>A isenção do IPVA vale durante todo o período em que o automóvel estiver em nome do mesmo condutor."
                     );               
                 echo monta_servico_site(
                         $titulo = "Rodizio Municipal de São Paulo (Dispensa)",
-                        $descricao = "É concedida a autorização às pessoas com deficiências rodarem com seu automóvel em áreas onde houver restrição à circulação de veículos."
+                        $descricao = "É concedida a autorização para as pessoas com deficiências rodarem com seus automóveis em áreas onde houver restrição à circulação de veículos."
                     );             
                 /*
                 echo monta_servico_site(
@@ -90,35 +90,35 @@
             
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="section-heading">Quem tem direito</h2>
+                    <h2 class="section-heading">Quem têm direito?</h2>
                     <h3 class="section-subheading text-muted">
-                        Existem benefícios ficas concedidos às pessoas consideradas deficientes que foram criados para facilitar a sua locomoção e independência. <br><br>
-                        Porem, a maioria das pessoas nem imagina quais são eles, pois não divulgação, acerca desses direitos, tão importantes.<br>
-                        Um deles é a isenção de IPI (Imposto sobre produto industrializado) e ICMS (Imposto sobre Circulação de mercadorias e serviços) para aquisição de veículos 0Km, que juntas podem chegar a 23% de desconto sobre o valor do veículo.<br><br>
-                        O mais interessante é que não é apenas os deficientes que tem esse direito, algumas doenças, ou tratamentos que para a maioria das pessoas não são considerados como uma deficiência, acabam se enquadrando na categoria de redução de mobilidade do membro (braços, pernas, mãos, pés, dedos), como por exemplo: 
-                        <li>escleroses múltiplas, </li>
-                        <li>mulheres que sofreram mastectomia e doenças desconhecidas degenerativa </li>
+                        Existem benefícios fiscas concedidos às pessoas consideradas deficientes que foram criados para facilitar a locomoção e independência da mesmas. <br><br>
+                        Porém, devido à falta de divulgação, a maioria das pessoas nem imagina quais são os benefícios acerca de direitos tão importantes.<br>
+                        As isenções de IPI (Imposto sobre Produto Industrializado) e de ICMS (Imposto sobre Circulação de Mercadorias e Serviços) para aquisição de veículos 0Km, podem representar cerca de 23% de desconto sobre o valor do veículo.<br><br>
+                        O mais interessante é que não são apenas os deficientes que têm estes direitos; algumas doenças ou tratamentos que para a maioria das pessoas não são considerados como uma deficiência, se enquadram na categoria de redução de mobilidade do membro (braços, pernas, mãos, pés e dedos), como por exemplo: 
+                        <br />   <br /> 
+                        <li>Escleroses múltiplas; </li><br /> 
+                        <li>Mulheres que sofreram mastectomia e doenças desconhecidas degenerativas; </li><br /> 
                         <!-- <ul></ul>-->
-                         <li>artrose</li>
-                         <li>artrite</li>
-                         <li>AVC</li>
-                         <li>paraplegia</li>
-                         <li>amputação</li>
-                         <li>nanismo</li>
-                         <li>baixa altura</li>
-                         <li>LER</li>
-                         <li>próteses internas ou externas</li>
-                         <li>sequelas de talidomidas</li>
-                         <li>paralisia infantil</li>
-                         <li>poliomielite</li>
-                         <li>doenças neurológicas</li>
-                         <li>etc</li>
-                           
+                         <li>Artrose;</li><br /> 
+                         <li>Artrite;</li><br /> 
+                         <li>AVC</li><br /> 
+                         <li>Paraplegia;</li><br /> 
+                         <li>Amputação;</li><br /> 
+                         <li>Nanismo;</li><br /> 
+                         <li>Baixa altura;</li><br /> 
+                         <li>LER;</li><br /> 
+                         <li>Próteses internas ou externas;</li><br /> 
+                         <li>Sequelas de talidomidas;</li><br /> 
+                         <li>Paralisia Infantil;</li><br /> 
+                         <li>Poliomielite;</li><br /> 
+                         <li>Doenças neurológicas, etc.</li>
+                                                 
                     </h3>
                     
-                    <h2 class="section-heading">E os benefícios não param por aí. </h2>
+                    <h2 class="section-heading">E os benefícios não param por aí! </h2>
                     <h3 class="section-subheading text-muted">
-                     Após a compra do veiculo com as isenções de PI e ICMS, essas pessoas anda tem direito as isenções de IPVA, e Rodizio, além do cartão 'defis', ou cartão do idoso, que permitem estacionar em vagas exclusivas demarcadas por toda a cidade, shoppings, farmácias, supermercados e etc.
+                     Após a compra do veiculo com as isenções de IPI e ICMS, existe ainda o direito das isenções de IPVA e rodízio, além do cartão 'Defis', ou Cartão do Idoso, que permitem estacionamento em vagas exclusivas demarcadas por toda a cidade em shoppings, farmácias, supermercados e etc.
      
                     </h3>                    
                 </div>
@@ -169,7 +169,7 @@
                                <?php 
                                echo input_text($nome_campo = 'nome', $label="Nome");
                                echo input_text($nome_campo = 'email', $label="E-mail");
-                               echo input_text($nome_campo = 'telefone', $label="felefone");
+                               echo input_text($nome_campo = 'telefone', $label="Telefone");
                                ?>
                                 
                             </div>
