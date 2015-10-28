@@ -1,0 +1,125 @@
+.status_atrasados{
+    background-color: #EE3137;
+    border-radius: 100px;
+    width: 30px;
+    position: relative;
+    left: 20px;
+    height: 30px;
+    color: #fff;
+}
+
+.status_hoje{
+    background-color: #FFFF01;
+    border-radius: 100px;
+    width: 30px;
+    position: relative;
+    left: 20px;
+    height: 30px;
+}
+.status_futuros{
+    background-color: #1D1ABF;
+    border-radius: 100px;
+    width: 30px;
+    position: relative;
+    left: 20px;
+    height: 30px;
+    color: #fff;
+}
+
+.status_hoje span, .status_atrasados span, .status_futuros span {
+    font-weight: bold;
+    position: relative;
+    top: 5px;
+}
+
+
+#check_usuarios{
+    position: relative;
+    left: 15px;
+    top: 5px;
+}
+
+.checkbox_form{
+    padding: 5px;
+    display: inline-block;
+}
+
+
+.navbar{
+	position: fixed;
+	z-index: 10;
+	width: 100%;
+}
+#logo{
+  width: 130px;
+}
+
+#menu_top{
+  height: 60px;
+ 
+
+}
+
+.menu_topo :hover{
+  /*color: #47A6BB;*/
+  /*position: relative;*/
+  /*top: 30px;*/
+
+}
+
+
+.container-fluid{
+	position: relative;
+	top:70px;
+}
+.ul_autocomplete{
+		position: absolute;
+		z-index: 9;
+}
+
+.ul_autocomplete li{
+	border:1px solid #ccc;
+	padding: 5px;
+	background: #F8F8F8;
+	list-style: none;
+	text-align: center;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 355px;
+}
+
+.ul_autocomplete li:hover {
+	background: #eaeaea;
+}
+
+@media (max-width: 767px) {
+ 	.container-fluid{
+		position: relative;
+		top:240px;
+	}
+}
+
+
+
+table thead {
+	font-weight: bold;
+}
+
+
+table.registros th,td {
+	text-align: center;
+}
+
+.editar_empresas{
+	color: #fff;
+}
+
+.destaque_busca{
+	color:#006400;
+}
+i{
+    color: #000;
+}
+.explicacao{
+    color: #ccc;
+}

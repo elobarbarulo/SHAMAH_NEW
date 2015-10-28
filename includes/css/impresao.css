@@ -1,0 +1,47 @@
+
+@media print {
+    
+    * {
+        background:transparent !important;
+        color:#000 !important;
+        text-shadow:none !important;
+        filter:none !important;
+        -ms-filter:none !important;
+    }
+
+    body {
+        margin:0;
+        padding:0;
+        line-height: 1.4em;
+        width: 100%; 
+        margin: auto;
+        position: relative;
+        top:-6.5cm;
+    }  
+    .quebrapagina {
+        page-break-after: always;
+    }
+    p {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        color: #0000CC;
+        page-break-inside:auto;
+    }    
+    
+    navbar{
+        display:none; 
+    }
+    #impressao{
+        margin: 0 auto;
+    }
+    
+    #impressao h3{
+        text-align: center;
+    }
+    .data_contrato{
+        text-align: right;
+    }
+    table td{
+        padding: 5px;
+    }
+}
