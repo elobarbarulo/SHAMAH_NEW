@@ -15,11 +15,7 @@ $this->load->database();
 
 
 //POROTEÇÂO DA PAGINA SE NAO TIVER SESSAO REDIRECIONA PRO LOGIN
-
-//$session = $this->session->all_userdata();
-//if(isset($session['usuario']) == ""){
-//    redirect('login/tela');
-//}    
-
-
-
+$session = $this->session->all_userdata();
+if(isset($session['usuario']) == ""){
+    redirect('site/inicio');
+}

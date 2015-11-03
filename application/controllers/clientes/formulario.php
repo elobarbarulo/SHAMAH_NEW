@@ -62,6 +62,6 @@ if ($post) {
     $banco->SetCampos($clientes->monta_campos());
     $banco->SetTabelas("clientes");
     $id_insert = $banco->inserir();
-    redirect('clientes/formulario_concluir/' . $id_insert);
+    redirect('clientes/formulario_concluir/' . $id_insert . '/parte_2');
 }
 ?>

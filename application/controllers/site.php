@@ -4,8 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Site extends CI_Controller {
  
     public function __construct(){
-    	parent::__construct();
-       include 'defaul_controller.php';
+       parent::__construct();
+       $this->load->model('usuarios_model');
+        $this->load->model('estado_model');
+        $this->load->model('cidade_model');
+        $this->load->model('servicos_model');
+        $this->load->model('clientes_model');
+        $this->load->model('query_model');
+        $this->load->model('telefones_model');
+        $this->load->model('incapaz_model');
+        $this->load->model('ajuda_financeira_model');
+        $this->load->model('processos_model');
+        $this->load->model('pagamentos_model');
+        $this->load->database();
     }
 
     private $controle = 'site';
