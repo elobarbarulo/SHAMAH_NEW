@@ -21,6 +21,33 @@ if ($_FILES) {
     }
     
     if ($arquivo['arquivo'] != "") {
+        /******CONSULTA E INSERE A PARTE DO DEDO DURO*****
+        $cdd = new Query_model();
+        $cdd->SetCampos("*");
+        $cdd->SetCondicao("processos.id = '".$this->uri->segment(4)."'");
+        $cdd->SetTabelas('processos');
+        $cdd->SetTipoRetorno(1);
+        $cdd_dados = $cdd->get();
+        debug($cdd_dados,true);
+        */
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        
+        if($this->uri->segment(5) == 'editar'){
+            $nome_processo = ' NOTA ';
+        }else{
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "<b>Anexo do arquivo:</b> O arquivo <b>".preparar_pasta($arquivo['arquivo']) ."</b> corresponde <b>" . $nome_processo .  "</b> foi importado pelo usuario " . $session['usuario']->nome . ' no dia ' .  date("d/m/Y") ." às " . date("h:i:s") ;
+        
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /******FIM DA PARTE DO DEDO DURO*****/
+        
         $inserir_arquivo = new Query_model();
         $inserir_arquivo->SetCampos(array('id_processo' => $this->uri->segment(4), 'anexo' => preparar_pasta($arquivo['arquivo']), 'id_nome_processo' => $n_processo));
         $inserir_arquivo->SetTabelas("processos_anexos");

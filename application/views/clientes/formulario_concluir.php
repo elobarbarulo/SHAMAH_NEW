@@ -33,7 +33,7 @@
 
                     echo SubTitulo('Cliente');
                     echo monta_input($tamanho = 7, $label = 'Nome Completo', $tipo_campo = 'txt', $nome = 'nome', $value = $dados['form']['nome'], $maxlength = "100", $classes = "");
-                    echo monta_input($tamanho = 3, $label = 'Nascimento', $tipo_campo = 'txt', $nome = 'dt_nasc', $value = $dados['form']['dt_nasc'], $maxlength = "100", $classes = "data", $id = "");
+                    echo monta_input($tamanho = 3, $label = 'Nascimento', $tipo_campo = 'txt', $nome = 'dt_nasc', $value = data_br($dados['form']['dt_nasc']), $maxlength = "100", $classes = "data", $id = "");
                     echo monta_select($tamanho = '2', $label = 'SEXO', $nome = 'sexo', $dados['sexo'], $dados['form']['sexo'], $id = "");
 
                     echo SubTitulo('');

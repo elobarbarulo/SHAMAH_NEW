@@ -4,22 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-$db['default'] = array(
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'shama',
+        $db['default'] = array(
+	//'hostname' => 'localhost',
+	//'username' => 'root',
+	//'password' => '',
+	//'database' => 'shama',
 
-    
-        //'hostname' => 'mysql.barbarulo.com.br',
-	//'username' => 'barbarulo04',
-	//'password' => '123456',
-	//'database' => 'barbarulo04',
-    
-	//'hostname' => 'shamah.mysql.uhserver.com',
-	//'username' => 'shamah',
-	//'password' => 'Flavio@1',
-	//'database' => 'shamah',
+	'hostname' => 'shamah.mysql.uhserver.com',
+	'username' => 'shamah',
+	'password' => 'Flavio@1',   
+	'database' => 'shamah',
 	
 	'dsn'	=> '',
 	'dbdriver' => 'mysqli',

@@ -127,7 +127,8 @@
         <li class="dropdown ">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user"></i> <?php  echo $session['usuario']->nome; ?> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><?php echo anchor('site/sair', 'Sair'); ?></li>
+            <li><?php echo anchor('usuarios/alterar_senha', 'Alterar Senha'); ?></li>
+            <li><?php echo anchor('site/sair', 'Sair'); ?></li>              
           </ul>
         </li>
 

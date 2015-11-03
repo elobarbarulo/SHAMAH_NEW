@@ -106,5 +106,32 @@ if ($post) {
         }
     }
   
+    /******CONSULTA E INSERE A PARTE DO DEDO DURO*****
+        $cdd = new Query_model();
+        $cdd->SetCampos("*");
+        $cdd->SetCondicao("processos.id = '".$this->uri->segment(4)."'");
+        $cdd->SetTabelas('processos');
+        $cdd->SetTipoRetorno(1);
+        $cdd_dados = $cdd->get();
+        debug($cdd_dados,true);
+        */
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        
+        if($this->uri->segment(5) == 'editar'){
+            $nome_processo = ' NOTA ';
+        }else{
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "<b>O processo foi alterado</b> "
+                . "Adicionando ou removido serviços,vendendores ou alterando  quem ira pagar as cartas feito pelo usuario " . $session['usuario']->nome . ' no dia ' .  date("d/m/Y") ." às " . date("h:i:s") ;
+        
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /******FIM DA PARTE DO DEDO DURO*****/
   redirect('processos/proc/' . $this->uri->segment(3) . '/' .  $this->uri->segment(4) .'/pagamentos');
 }

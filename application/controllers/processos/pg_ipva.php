@@ -28,9 +28,42 @@ $dados['arquivos'] = $anexos->get();
 /* VERIFICA SE A TAREFA PARA SER EXCLUIDA */
 if($this->uri->segment(6) == 'tarefas' && $this->uri->segment(7)!= "" && $this->uri->segment(8)!= ""){
     $apagar_tareafa = new Query_model();
-    $apagar_tareafa->SetCondicao("id = '".$this->uri->segment(7)."'");
+    $apagar_tareafa->SetCondicao("id = '" . $this->uri->segment(7) . "'");
     $apagar_tareafa->SetTabelas("alerta");
-    $apagar_tareafa->excluir();
+    $apagar_tareafa->SetCampos("*");
+    $apagar_tareafa->SetTipoRetorno(1);
+    $consulta_tarefas = $apagar_tareafa->get();
+    /******CONSULTA E INSERE A PARTE DO DEDO DURO***** */
+        
+        //MONTA O TEXTO COMPLEMENTO CASO O ALERTA FOR INSERIDO
+        $complemento = ' O alera ';
+        if ($consulta_tarefas->id_item == 17) {
+            $complemento.= '<b> Aguardando resposta </b>';
+        }
+        if ($consulta_tarefas->id_item == 16) {
+            $complemento.= ' <b> Aguardando para levar os documentos </b>';
+        }
+        if ($consulta_tarefas->id_item == 15) {
+            $complemento.= '<b> Faltando Documento </b>';
+        }
+
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        if ($this->uri->segment(5) == 'editar') {
+            $nome_processo = ' NOTA ';
+        } else {
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = $complemento ."</b> do processo  <b>" . texto_log($this->uri->segment(5)) . "</b>  foi finalizado "
+                . " pelo usuário <b>" . $session['usuario']->nome . '</b> no dia <b>' . date("d/m/Y") . "</b> às <b>" . date("h:i:s") ."</b>";
+
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /*         * ****FIM DA PARTE DO DEDO DURO**** */
+        $apagar_tareafa->excluir();
     redirect($this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$this->uri->segment(5).'/');
 }
 
@@ -184,11 +217,93 @@ if ($post) {
         $campos_processo_ipva['id_processo'] = $this->uri->segment(4);
         
     if (count($result_ipva) == 0) {
+        /******CONSULTA E INSERE A PARTE DO DEDO DURO*******/
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        if ($this->uri->segment(5) == 'editar') {
+            $nome_processo = ' NOTA ';
+        } else {
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        //MONTA O TEXTO COMPLEMENTO CASO O ALERTA FOR INSERIDO
+        $complemento = ' Criando um alerta ';
+        if ($post['item'] == 17) {
+            $complemento.= '<b> Aguardando resposta </b>';
+        }
+        if ($post['item'] == 16) {
+            $complemento.= ' Aguardando para levar os documentos ';
+        }
+        if ($post['item'] == 15) {
+            $complemento.= ' Faltando Documento ';
+        }
+        $complemento.=' para a data <b>' . data_br($monta['data']) . '</b> com o mensagem <b>' . $monta['obs'] . "</b>";
+       
+        //Verifica os tipos de status para ver se tem complemento ou não
+        if ($post['status'] == '0') {
+            $status = 'Pendente';
+        }
+        if ($post['status'] == '3') {
+            $status = 'Deferido';
+            $complemento = "";
+        }
+
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "O processo <b>" . texto_log($this->uri->segment(5)) . "</b>  foi Iniciado "
+                . " pelo usuário <b>" . $session['usuario']->nome . '</b> no dia <b>' . date("d/m/Y") . "</b> às <b>" . date("h:i:s") ."</b>"
+                . " deixando  o status do processo como <b>" . $status ." </b> ". $complemento;
+                
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /*         * ****FIM DA PARTE DO DEDO DURO**** */
+        
         $inserir_ipvaa = new Query_model();
         $inserir_ipvaa->SetCampos($campos_processo_ipva);
         $inserir_ipvaa->SetTabelas("processos_ipva");
         $inserir_ipvaa->inserir();
     } else {
+        /******CONSULTA E INSERE A PARTE DO DEDO DURO*******/
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        if ($this->uri->segment(5) == 'editar') {
+            $nome_processo = ' NOTA ';
+        } else {
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        //MONTA O TEXTO COMPLEMENTO CASO O ALERTA FOR INSERIDO
+        $complemento = ' Criando um alerta ';
+        if ($post['item'] == 17) {
+            $complemento.= '<b> Aguardando resposta </b>';
+        }
+        if ($post['item'] == 16) {
+            $complemento.= ' Aguardando para levar os documentos ';
+        }
+        if ($post['item'] == 15) {
+            $complemento.= ' Faltando Documento ';
+        }
+        $complemento.=' para a data <b>' . data_br($monta['data']) . '</b> com o mensagem <b>' . $monta['obs'] . "</b>";
+       
+        //Verifica os tipos de status para ver se tem complemento ou não
+        if ($post['status'] == '0') {
+            $status = 'Pendente';
+        }
+        if ($post['status'] == '3') {
+            $status = 'Deferido';
+            $complemento = "";
+        }
+
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "O processo <b>" . texto_log($this->uri->segment(5)) . "</b>  foi Alterado "
+                . " pelo usuário <b>" . $session['usuario']->nome . '</b> no dia <b>' . date("d/m/Y") . "</b> às <b>" . date("h:i:s") ."</b>"
+                . " deixando  o status do processo como <b>" . $status ." </b> ". $complemento;
+                
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /*         * ****FIM DA PARTE DO DEDO DURO**** */
+        
         $alterar_ipvaa = new Query_model();
         $alterar_ipvaa->SetCampos($campos_processo_ipva);
         $alterar_ipvaa->SetTabelas("processos_ipva");

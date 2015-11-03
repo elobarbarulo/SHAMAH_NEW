@@ -43,6 +43,8 @@ if ($post) {
     $processos->SetCampo("id_cliente", $this->uri->segment(3));
     $processos->SetCampo("id_usu_concessionaria", $post['vendedor']);
     $processos->SetCampo("quem_pg_cartas", $post['quem_pg_cartas']);
+    
+    
     $inserir = new Query_model();
     $inserir->SetCampos($processos->monta_campos());
     $inserir->SetTabelas("processos");
@@ -60,7 +62,25 @@ if ($post) {
             }
         }
     }
-
+        /******CONSULTA E INSERE A PARTE DO DEDO DURO*****
+        $cdd = new Query_model();
+        $cdd->SetCampos("*");
+        $cdd->SetCondicao("processos.id = '".$this->uri->segment(4)."'");
+        $cdd->SetTabelas('processos');
+        $cdd->SetTipoRetorno(1);
+        $cdd_dados = $cdd->get();
+        debug($cdd_dados,true);
+        */
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        $inserir['id_processo'] = $id_processo;
+        $inserir['descricao'] = "<b>Início:</b> O processo foi iniciado pelo usuário " . $session['usuario']->nome . ' no dia ' .  date("d/m/Y") ." às " . date("h:i:s") ;
+        
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /******FIM DA PARTE DO DEDO DURO*****/
    
 
 

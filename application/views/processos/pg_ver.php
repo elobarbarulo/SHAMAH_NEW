@@ -85,6 +85,14 @@
     </tbody>
 </table>
 <?php
+
+echo SubTitulo('Histórico').'<hr>';
+echo SubTitulo('<hr>');
+
+foreach ($dados['log'] as $key => $value) {
+   echo  '* '.$value['descricao'].'<hr>';
+}
+
 echo SubTitulo('Anexos');
 foreach ($dados['arquivos'] as $key => $value) {
    $caminho = base_url().'anexos/'.$value['anexo'];

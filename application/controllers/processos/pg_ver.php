@@ -19,6 +19,13 @@ if($this->uri->segment(4) == 0){
         redirect("processos/proc/".$this->uri->segment(3).'/'.$consulta->id.'/ver');
     }
 }
+/****************************************************************************/
+$c_log = new Query_model();
+$c_log->SetCampos("*");
+$c_log->SetCondicao("id_processo = '".$this->uri->segment(4)."' ORDER BY id DESC");
+$c_log->SetTabelas("processos_log");
+$c_log->SetTipoRetorno(0);
+$dados['log'] = $c_log->get();
 
 /****************************************************************************/
 $const_ipi = new Query_model();
@@ -105,7 +112,7 @@ if(count($const_cnh) == 0){
 $const_laudos= new Query_model();
 $const_laudos->SetCampos("status");
 $const_laudos->SetCondicao("id_processo = '".$this->uri->segment(4)."'");
-$const_laudos->SetTabelas("processos_cnh");
+$const_laudos->SetTabelas("processos_laudos");
 $const_laudos->SetTipoRetorno(1);
 $const_laudos = $const_laudos->get();
 

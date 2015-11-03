@@ -400,7 +400,16 @@ function converter_primeira_maiucula($texto){
     }
     return $retorno;
 }
-
+/******************************************************************************************************
+ * 
+ * @param type $nome
+ * @return type
+ *****************************************************************************************************/
+function texto_log($nome){
+    $nome = strtoupper($nome);// Deixar tudo maiusculos
+    $nome = str_replace("_", " ", $nome);// tirar espaços e colocar '_' 
+    return $nome;
+}
 
 
     /**

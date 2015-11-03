@@ -28,11 +28,57 @@ $dados['arquivos'] = $anexos->get();
 
 /* VERIFICA SE A TAREFA PARA SER EXCLUIDA */
 if ($this->uri->segment(6) == 'tarefas' && $this->uri->segment(7) != "" && $this->uri->segment(8) != "") {
-    $apagar_tareafa = new Query_model();
+       $apagar_tareafa = new Query_model();
     $apagar_tareafa->SetCondicao("id = '" . $this->uri->segment(7) . "'");
     $apagar_tareafa->SetTabelas("alerta");
-    $apagar_tareafa->excluir();
-    redirect($this->uri->segment(1) . '/' . $this->uri->segment(2) . '/' . $this->uri->segment(3) . '/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/');
+    $apagar_tareafa->SetCampos("*");
+    $apagar_tareafa->SetTipoRetorno(1);
+    $consulta_tarefas = $apagar_tareafa->get();
+    /******CONSULTA E INSERE A PARTE DO DEDO DURO***** */
+        
+        //MONTA O TEXTO COMPLEMENTO CASO O ALERTA FOR INSERIDO
+        $complemento = ' O alera ';
+        if ($consulta_tarefas->id_item == 1) {
+            $complemento.= '<b> detran </b>';
+        }
+        if ($consulta_tarefas->id_item == 6) {
+            $complemento.= ' <b> Aprovação </b>';
+        }
+        if ($consulta_tarefas->id_item == 5) {
+            $complemento.= '<b> Processo Fisico </b>';
+        }
+        
+        if ($consulta_tarefas->id_item == 4) {
+            $complemento.= '<b> Processo agendamento pratico </b>';
+        }
+           
+        if ($consulta_tarefas->id_item == 3) {
+            $complemento.= '<b> Encaminhamento auto escola </b>';
+        }  
+        if ($consulta_tarefas->id_item == 2) {
+            $complemento.= '<b> Clinica </b>';
+        }           
+        
+
+        
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        if ($this->uri->segment(5) == 'editar') {
+            $nome_processo = ' NOTA ';
+        } else {
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = $complemento ."</b> do processo  <b>" . texto_log($this->uri->segment(5)) . "</b>  foi finalizado "
+                . " pelo usuário <b>" . $session['usuario']->nome . '</b> no dia <b>' . date("d/m/Y") . "</b> às <b>" . date("h:i:s") ."</b>";
+
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /*         * ****FIM DA PARTE DO DEDO DURO**** */
+        $apagar_tareafa->excluir();
+    redirect($this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$this->uri->segment(5).'/');
 }
 /* PADRÂO DO SATATUS DO ITEM */
 $dados['status_select'] = 4;
@@ -189,11 +235,112 @@ if ($post) {
     $campos_cnh['status'] =  $post['status'];
    
     if (count($result_cnh) == 0) {
+    /******CONSULTA E INSERE A PARTE DO DEDO DURO*******/
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        if ($this->uri->segment(5) == 'editar') {
+            $nome_processo = ' NOTA ';
+        } else {
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        //MONTA O TEXTO COMPLEMENTO CASO O ALERTA FOR INSERIDO
+        $complemento = ' Criando um alerta ';
+        if ($post['item'] == 1) {
+            $complemento.= '<b> detran </b>';
+        }
+        if ($post['item'] == 6) {
+            $complemento.= ' Aprovação ';
+        }
+        if ($post['item'] == 5) {
+            $complemento.= ' Processo Fisico ';
+        }
+        if ($post['item'] == 4) {
+            $complemento.= ' Processo agendamento pratico ';
+        }
+        if ($post['item'] == 3) {
+            $complemento.= ' Encaminhamento auto escola ';
+        }
+        if ($post['item'] == 2) {
+            $complemento.= ' Clinica ';
+        }
+
+        $complemento.=' para a data <b>' . data_br($monta['data']) . '</b> com o mensagem <b>' . $monta['obs'] . "</b>";
+
+        //Verifica os tipos de status para ver se tem complemento ou não
+        if ($post['status'] == '0') {
+            $status = 'Pendente';
+        }
+        if ($post['status'] == '3') {
+            $status = 'Deferido';
+            $complemento = "";
+        }
+
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "O processo <b>" . texto_log($this->uri->segment(5)) . "</b>  foi Iniciado "
+                . " pelo usuário <b>" . $session['usuario']->nome . '</b> no dia <b>' . date("d/m/Y") . "</b> às <b>" . date("h:i:s") ."</b>"
+                . " deixando  o status do processo como <b>" . $status ." </b> ". $complemento;
+                
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /*         * ****FIM DA PARTE DO DEDO DURO**** */
+        
         $inserir_cnh = new Query_model();
         $inserir_cnh->SetCampos($campos_cnh);
         $inserir_cnh->SetTabelas("processos_cnh");
         $inserir_cnh->inserir();
     } else {
+        /******CONSULTA E INSERE A PARTE DO DEDO DURO*******/
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        if ($this->uri->segment(5) == 'editar') {
+            $nome_processo = ' NOTA ';
+        } else {
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        //MONTA O TEXTO COMPLEMENTO CASO O ALERTA FOR INSERIDO
+        $complemento = ' Criando um alerta ';
+        if ($post['item'] == 1) {
+            $complemento.= '<b> detran </b>';
+        }
+        if ($post['item'] == 6) {
+            $complemento.= ' Aprovação ';
+        }
+        if ($post['item'] == 5) {
+            $complemento.= ' Processo Fisico ';
+        }
+        if ($post['item'] == 4) {
+            $complemento.= ' Processo agendamento pratico ';
+        }
+        if ($post['item'] == 3) {
+            $complemento.= ' Encaminhamento auto escola ';
+        }
+        if ($post['item'] == 2) {
+            $complemento.= ' Clinica ';
+        }
+
+        $complemento.=' para a data <b>' . data_br($monta['data']) . '</b> com o mensagem <b>' . $monta['obs'] . "</b>";
+
+        //Verifica os tipos de status para ver se tem complemento ou não
+        if ($post['status'] == '0') {
+            $status = 'Pendente';
+        }
+        if ($post['status'] == '3') {
+            $status = 'Deferido';
+            $complemento = "";
+        }
+
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "O processo <b>" . texto_log($this->uri->segment(5)) . "</b>  foi Alterado "
+                . " pelo usuário <b>" . $session['usuario']->nome . '</b> no dia <b>' . date("d/m/Y") . "</b> às <b>" . date("h:i:s") ."</b>"
+                . " deixando  o status do processo como <b>" . $status ." </b> ". $complemento;
+                
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /*         * ****FIM DA PARTE DO DEDO DURO**** */
         $alterar_cnh = new Query_model();
         $alterar_cnh->SetCampos($campos_cnh);
         $alterar_cnh->SetTabelas("processos_cnh");

@@ -4,6 +4,15 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+function is_email(email){
+	er = /^[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2}/; 
+	if( !er.exec(email) )	{
+            return false;
+	}else{
+            return true;
+        }
+}
+
 // jQuery for page scrolling feature - requires jQuery Easing plugin
 $(function() {
     $('a.page-scroll').bind('click', function(event) {
@@ -36,7 +45,37 @@ $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
 
-
+//Validar Contato
+$("#validar_contato").click(function(){
+    if($("#nome").val() == ''){
+       alert('O campo Nome não pode ser vazio');
+       $("#nome").focus();
+       return false;
+   }
+   if($("#email").val() == ''){  
+       alert('A Email não pode ser vazia');
+       $("#email").focus();
+       return false;
+   }
+      
+   if($("#telefone").val() == ''){
+       alert('A senha não pode ser vazia');
+       $("#telefone").focus();
+       return false;
+   }  
+   
+   if($("#mensagem").val() == ''){
+       alert('A Mensagem não pode ser vazia');
+       $("#mensagem").focus();
+       return false;
+   }  
+   
+   if(is_email($("#email").val())=== false ){
+    alert('O email digitado não é valido');
+    $("#email").focus();
+    return false;
+   }
+});
 //Validar email
 $("#validar_login").click(function(){
    if($("#cpf").val() == ''){

@@ -120,6 +120,7 @@ if ($this->uri->segment(6) == 'form') {
         </thead>
         <tbody>
             <?php
+            $link_add = "";
             foreach ($dados['parcelas'] as $key => $value) {
 
                 if ($value['quem_ira_pagar'] == 1) {

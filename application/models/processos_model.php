@@ -8,11 +8,11 @@ class Processos_model extends CI_Model {
     private $dt_inicio = "";
     private $quem_pg_cartas = "";
     private $status = "1"; // 1 = Producao 2 =Finalizado 3 = Cancelado
-    private $valor_servicos = "";
-    private $valor_desconto = "";
-    private $valor_acrescimos = "";
-    private $emitiu_nota = "";
-    private $n_nota = "";
+    private $valor_servicos = "0";
+    private $valor_desconto = "0";
+    private $valor_acrescimos = "0";
+    private $emitiu_nota = "0";
+    private $n_nota = "0";
     private $anexo_nota = "";
 
     
@@ -43,7 +43,7 @@ class Processos_model extends CI_Model {
         $ret['valor_servicos'] = $this->valor_servicos;
         $ret['valor_desconto'] = $this->valor_desconto;
         $ret['valor_acrescimos'] = $this->valor_acrescimos;
-        $ret['emitiu_nota'] = $this->emitiu_nota;
+        //$ret['emitiu_nota'] = $this->emitiu_nota;
         $ret['n_nota'] = $this->n_nota;
         $ret['anexo_nota'] = $this->anexo_nota;
         

@@ -20,6 +20,11 @@ class Usuarios extends CI_Controller {
 		include ($this->uri->segment(1).'/'.$this->uri->segment(2).'.php');
 		$this->index($dados);
 	}
+        public function alterar_senha($id = ''){
+		$dados =  array();
+		include ($this->uri->segment(1).'/'.$this->uri->segment(2).'.php');
+		$this->index($dados);
+	}
         
         public function index($dados = array()){
 		if($this->uri->segment(2) == ''){

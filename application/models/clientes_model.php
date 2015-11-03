@@ -85,27 +85,27 @@ class Clientes_model extends CI_Model {
 
  public function monta_campos(){
         $ret = array();
-        $ret['nome'] = $this->nome;
+        $ret['nome'] = mb_strtoupper($this->nome);
         $ret['dt_nasc'] = data_banco($this->dt_nasc);
         $ret['sexo'] = $this->sexo;
         $ret['cpf'] = str2int($this->cpf);
         $ret['rg'] = str2int($this->rg);
         $ret['rg_uf'] = $this->rg_uf;
-        $ret['email'] = $this->email;
-        $ret['inss'] = $this->inss;
+        $ret['email'] = mb_strtoupper($this->email);
+        $ret['inss'] = mb_strtoupper($this->inss);
         $ret['tem_cnh'] = $this->tem_cnh;
         $ret['cnh_numero'] = $this->cnh_numero;
         $ret['cnh_tipo'] = $this->cnh_tipo;
         $ret['possui_cnpj'] = $this->possui_cnpj;
         $ret['possui_carro_automatico'] = $this->possui_carro_automatico;
-        $ret['atividade'] = $this->atividade;
-        $ret['end_logradouro'] = $this->end_logradouro;
+        $ret['atividade'] = mb_strtoupper($this->atividade);
+        $ret['end_logradouro'] = mb_strtoupper($this->end_logradouro);
         $ret['end_n'] = $this->end_n;
-        $ret['end_complemento'] = $this->end_complemento;
-        $ret['end_bairro'] = $this->end_bairro;
+        $ret['end_complemento'] = mb_strtoupper($this->end_complemento);
+        $ret['end_bairro'] = mb_strtoupper($this->end_bairro);
         $ret['end_cep'] = str2int($this->end_cep);
-        $ret['end_cidade'] = $this->end_cidade;
-        $ret['end_estado'] = $this->end_estado;
+        $ret['end_cidade'] = mb_strtoupper($this->end_cidade);
+        $ret['end_estado'] = mb_strtoupper($this->end_estado);
         $ret['incapaz'] = $this->incapaz;
         $ret['ajuda_finaceira'] = $this->ajuda_finaceira;
         $ret['condutor'] = $this->condutor;

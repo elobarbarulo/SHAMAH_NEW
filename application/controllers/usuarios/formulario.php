@@ -129,6 +129,34 @@ if ($post) {
             $banco->SetTabelas("usuarios");
             $banco->SetCampos($usuarios_alterar->monta_campos());
             $banco->inserir();
+            
+            //Enviar email para o usurios 
+            $this->load->library('email');
+            $this->email->initialize(array(
+                'protocol' => 'smtp',
+                'smtp_host' => 'smtp.isencao.net',
+                'smtp_user' => 'sistema@isencao.net',
+                'smtp_pass' => 'sistema1',
+                'smtp_port' => 587,
+                'crlf' => "\r\n",
+                'newline' => "\r\n",
+                'mailtype' => "html",
+            ));
+        $mensagem =  "";
+        $mensagem.="<pre>";
+        $mensagem.="MENSAGEM ENVIADO DO SISTEMA SHAMAH<br>"
+                . "Seu cadastro foi realizado no sistema shamah para acessar entre no endereço a baixo:"
+                . "<br>"
+                . "<a href='http://localhost/SHAMAH_NEW/site/inicio'>http://localhost/SHAMAH_NEW/site/inicio</a> "
+                . "Com a senha: <b>shamah</b> e seu CPF";
+        $mensagem.="</pre>";
+           
+        $this->email->from('sistema@isencao.net', 'SHAMAH');
+        $this->email->to("viniciusbarbarulo@gmail.com");
+        $this->email->subject('SHAMAH - ' . date("d/m/Y"));
+        $this->email->message($mensagem);
+        $this->email->send();
+            
         } else {
             $banco->SetTabelas("usuarios");
             $banco->SetCondicao(array('id' => $this->uri->segment(3)));

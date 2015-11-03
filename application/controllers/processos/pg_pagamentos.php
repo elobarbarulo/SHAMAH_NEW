@@ -67,6 +67,34 @@ if($this->uri->segment(6) == "pagar" && $this->uri->segment(7) != "" && $this->u
     $pag->SetCondicao("id = '".$this->uri->segment(7)."'");
     $pag->SetTabelas("pagamentos");
     $pag->atualizar();
+    
+    /******CONSULTA E INSERE A PARTE DO DEDO DURO*****
+        $cdd = new Query_model();
+        $cdd->SetCampos("*");
+        $cdd->SetCondicao("processos.id = '".$this->uri->segment(4)."'");
+        $cdd->SetTabelas('processos');
+        $cdd->SetTipoRetorno(1);
+        $cdd_dados = $cdd->get();
+        debug($cdd_dados,true);
+        */
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        
+        if($this->uri->segment(5) == 'editar'){
+            $nome_processo = ' NOTA ';
+        }else{
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "<b>Pagamentos Recebido: </b>O pagamento foi recebido pelo usuario " . $session['usuario']->nome . ' no dia ' .  date("d/m/Y") ." às " . date("h:i:s") ;
+        
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /******FIM DA PARTE DO DEDO DURO*****/
+    
 } 
 
 if($this->uri->segment(6) == "confirmar" && $this->uri->segment(7) != "" && $this->uri->segment(8) == "1"){
@@ -75,6 +103,34 @@ if($this->uri->segment(6) == "confirmar" && $this->uri->segment(7) != "" && $thi
     $pag_con->SetCondicao("id = '".$this->uri->segment(7)."'");
     $pag_con->SetTabelas("pagamentos");
     $pag_con->atualizar();
+    
+    /******CONSULTA E INSERE A PARTE DO DEDO DURO*****
+        $cdd = new Query_model();
+        $cdd->SetCampos("*");
+        $cdd->SetCondicao("processos.id = '".$this->uri->segment(4)."'");
+        $cdd->SetTabelas('processos');
+        $cdd->SetTipoRetorno(1);
+        $cdd_dados = $cdd->get();
+        debug($cdd_dados,true);
+        */
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        
+        if($this->uri->segment(5) == 'editar'){
+            $nome_processo = ' NOTA ';
+        }else{
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "<b>Pagamentos Confirmado: </b>O pagamento foi confirmado pelo usuario " . $session['usuario']->nome . ' no dia ' .  date("d/m/Y") ." às " . date("h:i:s") ;
+        
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /******FIM DA PARTE DO DEDO DURO*****/
+    
 }
 
 if($this->uri->segment(7) == ""){
@@ -163,6 +219,36 @@ if ($post) {
             $inserir->SetTabelas("pagamentos");
             $inserir->inserir();
             
+            
+                /******CONSULTA E INSERE A PARTE DO DEDO DURO*****
+        $cdd = new Query_model();
+        $cdd->SetCampos("*");
+        $cdd->SetCondicao("processos.id = '".$this->uri->segment(4)."'");
+        $cdd->SetTabelas('processos');
+        $cdd->SetTipoRetorno(1);
+        $cdd_dados = $cdd->get();
+        debug($cdd_dados,true);
+        */
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        
+        if($this->uri->segment(5) == 'editar'){
+            $nome_processo = ' NOTA ';
+        }else{
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "<b>Pagamentos parcela Nova: </b>Foi adicionado uma nova parcela  pelo usuário " . $session['usuario']->nome . ' no dia ' .  date("d/m/Y") ." às " . date("h:i:s") ;
+        
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /******FIM DA PARTE DO DEDO DURO*****/
+            
+            
+            
         }
 
 
@@ -228,6 +314,32 @@ if ($post) {
             $pag_inserir_cliente->SetCampos($pagamentos_cli->monta_campos());
             $pag_inserir_cliente->inserir();
         }
+        /******CONSULTA E INSERE A PARTE DO DEDO DURO*****
+        $cdd = new Query_model();
+        $cdd->SetCampos("*");
+        $cdd->SetCondicao("processos.id = '".$this->uri->segment(4)."'");
+        $cdd->SetTabelas('processos');
+        $cdd->SetTipoRetorno(1);
+        $cdd_dados = $cdd->get();
+        debug($cdd_dados,true);
+        */
+        $session = $this->session->all_userdata();
+        $sis_dedo_duro = new Query_model();
+        $inserir = array();
+        
+        if($this->uri->segment(5) == 'editar'){
+            $nome_processo = ' NOTA ';
+        }else{
+            $nome_processo = texto_log($this->uri->segment(5));
+        }
+        
+        $inserir['id_processo'] = $this->uri->segment(4);
+        $inserir['descricao'] = "<b>Pagamentos: </b>inserido pelo usuario " . $session['usuario']->nome . ' no dia ' .  date("d/m/Y") ." às " . date("h:i:s") ;
+        
+        $sis_dedo_duro->SetCampos($inserir);
+        $sis_dedo_duro->SetTabelas("processos_log");
+        $sis_dedo_duro->inserir();
+        /******FIM DA PARTE DO DEDO DURO*****/
     }
     redirect("processos/proc/".$this->uri->segment(3).'/'.$this->uri->segment(4).'/pagamentos');
 }
